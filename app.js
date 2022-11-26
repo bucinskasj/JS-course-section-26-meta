@@ -74,8 +74,23 @@ const course = {
   title: 'JavaScript guide'
 };
 
-Reflect.deleteProperty(course, 'title');
+// Reflect.deleteProperty(course, 'title');
 
 Reflect.setPrototypeOf(course, {toString() {return this.title}});
 
 console.log(course)
+
+//Proxy API
+
+const courseHanlder = {
+  get(obj, propertyName) {
+    console.log(propertyName);
+    if(propertyName === 'length') {
+      return 0;
+    }
+    return obj[propertyName] || 'NOT FOUND';
+  }
+}
+
+const pCourse = new Proxy(course, courseHanlder);
+console.log(pCourse.title, pCourse.length, pCourse.rating);
