@@ -7,7 +7,8 @@ const user = {
   // id: 'p1',
   [uid]: 'p1',
   name: 'Max',
-  age: 30
+  age: 30,
+  [Symbol.toStringTag]: 'User Object'
 };
 
 user[uid] = 'p3';
@@ -20,4 +21,4 @@ console.log(user[Symbol('uid')]);
 
 console.log(Symbol('uid') === Symbol('uid'));
 
-console.log(user);
+console.log(user.toString());
