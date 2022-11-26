@@ -22,3 +22,24 @@ console.log(user[Symbol('uid')]);
 console.log(Symbol('uid') === Symbol('uid'));
 
 console.log(user.toString());
+
+
+const company = {
+  curEmployee: 0,
+  employees: ['Max', 'Manuel', 'Anna'],
+  next() {
+    if(this.curEmployee >= this.employees.length) {
+      return {value: this.curEmployee, done: true };
+    }
+    const returnValue = { value: this.employees[this.curEmployee], done: false};
+    this.curEmployee++;
+    return returnValue;
+  }
+};
+
+let employee = company.next();
+
+while(!employee.done) {
+  console.log(employee.value);
+  employee = company.next();
+}
